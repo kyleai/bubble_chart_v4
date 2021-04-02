@@ -8,7 +8,7 @@
  */
 function bubbleChart() {
   // Constants for sizing
-  var width = 940;
+  var width = 600;
   var height = 600;
 
   // tooltip for mouseover functionality
@@ -73,9 +73,7 @@ function bubbleChart() {
 
   // Nice looking colors - no reason to buck the trend
   // @v4 scales now have a flattened naming scheme
-  var fillColor = d3.scaleOrdinal()
-    .domain(['low', 'medium', 'high'])
-    .range(['#d84b2a', '#beccae', '#7aa25c']);
+  var fillColor = d3.scaleOrdinal(d3.schemeCategory20);
 
 
   /*
@@ -161,8 +159,8 @@ function bubbleChart() {
     var bubblesE = bubbles.enter().append('circle')
       .classed('bubble', true)
       .attr('r', 0)
-      .attr('fill', function (d) { return fillColor(d.group); })
-      .attr('stroke', function (d) { return d3.rgb(fillColor(d.group)).darker(); })
+      .attr('fill', function (d) { return fillColor(d.org); })
+      .attr('stroke', function (d) { return d3.rgb(fillColor(d.org)).darker(); })
       .attr('stroke-width', 2)
       .on('mouseover', showDetail)
       .on('mouseout', hideDetail);
